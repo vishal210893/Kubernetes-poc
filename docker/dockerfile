@@ -1,0 +1,12 @@
+# Alpine Linux with OpenJDK JRE
+FROM azul/zulu-openjdk:8
+
+WORKDIR /app
+
+# copy all the things from current folder to app
+COPY . /app
+
+EXPOSE 5000
+
+# run application with this command line
+CMD ["/usr/bin/java", "-jar", "kubernetes.jar"]
