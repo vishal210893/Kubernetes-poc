@@ -1,7 +1,0 @@
-version: '3.7'
-services:
-  java-kubernetes-service:
-    image: vishal210893/kubernetes:java_kubernetes_5
-    ports:
-      - "5000:8080"
-    restart: always
