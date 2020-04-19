@@ -5,34 +5,34 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  tag: '33'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'Vishal-Docker_Hub'
-        repository: 'vishal210893/kubernetes'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/*.yml'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'manifest'
-        publishLocation: 'Container'
+# stages:
+# - stage: Build
+#   displayName: Build image
+#   jobs:  
+#   - job: Build
+#     displayName: Build
+#     pool:
+#       vmImage: 'ubuntu-latest'
+#     steps:
+#     - task: Docker@2
+#       inputs:
+#         containerRegistry: 'Vishal-Docker_Hub'
+#         repository: 'vishal210893/kubernetes'
+#         command: 'buildAndPush'
+#         Dockerfile: '**/Dockerfile'
+#         tags: '$(tag)'
+#     - task: CopyFiles@2
+#       inputs:
+#         SourceFolder: '$(System.DefaultWorkingDirectory)'
+#         Contents: '**/*.yml'
+#         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+#     - task: PublishBuildArtifacts@1
+#       inputs:
+#         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#         ArtifactName: 'manifest'
+#         publishLocation: 'Container'
 
 - stage: Deploy
   displayName: Deploy image
@@ -47,7 +47,7 @@ stages:
         buildType: 'current'
         artifactName: 'manifest'
         itemPattern: '**/*.yml'
-        targetPath: '$(ystem.ArtifactsDirectory)'
+        targetPath: '$(System.ArtifactsDirectory)'
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
