@@ -7,7 +7,7 @@ resources:
 variables:
   tag: '33'
 
-# stages:
+stages:
 # - stage: Build
 #   displayName: Build image
 #   jobs:  
