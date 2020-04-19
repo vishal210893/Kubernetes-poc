@@ -53,6 +53,6 @@ stages:
         action: 'deploy'
         kubernetesServiceConnection: 'Vishal-Kubernetes-Cluster'
         namespace: 'default'
-        manifests: '$(System.ArtifactsDirectory)/deployment.yaml'
+        manifests: '$(System.ArtifactsDirectory)/deployment.yml'
         containers: 'vishal210893/kubernetes:$(tag)'
       
